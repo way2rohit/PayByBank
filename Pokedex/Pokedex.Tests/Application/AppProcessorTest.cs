@@ -29,7 +29,7 @@ namespace Pokedex.Tests.Application
             {
                 PockemonName ="steelix"
             };
-            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new DefaultResponse<PokemonInfo>() { 
+            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>() { 
                 Data = new PokemonInfo()
                 {
                     Description ="This is a test description.",
@@ -63,7 +63,7 @@ namespace Pokedex.Tests.Application
                 IsTranslationRequired = true,
                 PockemonName = "steelix"
             };
-            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new DefaultResponse<PokemonInfo>()
+            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = new PokemonInfo()
                 {
@@ -73,7 +73,7 @@ namespace Pokedex.Tests.Application
                     Name = "steelix"
                 }
             }));
-            _service.Setup(x => x.GetTranslatedDesc(It.IsAny<GetTranslationRequest>())).Returns(Task.FromResult(new DefaultResponse<string>()
+            _service.Setup(x => x.GetTranslatedDesc(It.IsAny<GetTranslationRequest>())).Returns(Task.FromResult(new BaseResponse<string>()
             {
                 Data = "A test description,  'this is.'"
             }));

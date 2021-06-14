@@ -10,13 +10,13 @@ namespace Pokedex.Domain
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DefaultResponse<PokemonInfo>> GetPokemonInfo(GetPokemonSpeicesRequest request);
+        Task<BaseResponse<PokemonInfo>> GetPokemonInfo(GetPokemonSpeicesRequest request);
 
         /// <summary>
         /// GetTranslatedDescription
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<DefaultResponse<string>> GetTranslatedDesc(GetTranslationRequest request);
+        Task<BaseResponse<string>> GetTranslatedDesc(GetTranslationRequest request);
     }
 }

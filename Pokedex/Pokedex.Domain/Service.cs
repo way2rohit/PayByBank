@@ -27,9 +27,9 @@ namespace Pokedex.Domain
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<DefaultResponse<PokemonInfo>> GetPokemonInfo(GetPokemonSpeicesRequest request)
+        public async Task<BaseResponse<PokemonInfo>> GetPokemonInfo(GetPokemonSpeicesRequest request)
         {
-            DefaultResponse<PokemonInfo> response = new DefaultResponse<PokemonInfo>();
+            BaseResponse<PokemonInfo> response = new BaseResponse<PokemonInfo>();
             try
             {
                 string url = $"{_appSettings.PokemonSpeciesEndpoint}{request.PockemonName}";
@@ -83,9 +83,9 @@ namespace Pokedex.Domain
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<DefaultResponse<string>> GetTranslatedDesc(GetTranslationRequest request)
+        public async Task<BaseResponse<string>> GetTranslatedDesc(GetTranslationRequest request)
         {
-            DefaultResponse<string> response = new DefaultResponse<string>();
+            BaseResponse<string> response = new BaseResponse<string>();
             try
             {
                 string url = (request.Habitat.Equals("cave", StringComparison.InvariantCultureIgnoreCase)) ||
