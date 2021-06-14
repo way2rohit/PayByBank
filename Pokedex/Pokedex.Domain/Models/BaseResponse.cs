@@ -1,6 +1,6 @@
 ﻿namespace Pokedex.Domain.Models
 {
-    public class DefaultResponse<T>
+    public class BaseResponse<T>
     {
         public bool IsSuccess
         {

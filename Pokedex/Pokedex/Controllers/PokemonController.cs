@@ -33,7 +33,7 @@ namespace Pokedex.Controllers
                     return BadRequest($"Pokemon name should not be null or empty.");
                 }
 
-                GetPokemonSpeicesRequest request = new GetPokemonSpeicesRequest()
+                GetPokemonInfoRequest request = new GetPokemonInfoRequest()
                 {
                     PockemonName = name
                 };
@@ -75,7 +75,7 @@ namespace Pokedex.Controllers
                     return BadRequest($"Pokemon name should not be null or empty.");
                 }
 
-                GetPokemonSpeicesRequest request = new GetPokemonSpeicesRequest()
+                GetPokemonInfoRequest request = new GetPokemonInfoRequest()
                 {
                     PockemonName = name,
                     IsTranslationRequired = true
