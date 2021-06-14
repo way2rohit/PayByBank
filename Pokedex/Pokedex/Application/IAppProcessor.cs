@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Application
 {
-    public interface IAppProcessor
-    {
-        public Task<BaseResponse<PokemonInfo>> Process(GetPokemonInfoRequest request);
-    }
+	public interface IAppProcessor
+	{
+		public Task<BaseResponse<PokemonInfo>> Process(GetPokemonInfoRequest request);
+	}
 }
