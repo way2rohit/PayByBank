@@ -29,7 +29,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "steelix";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = new PokemonInfo()
                 {
@@ -55,7 +55,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "steelix";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = null,
                 ErrorCode = 404,
@@ -79,7 +79,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = null,
                 ErrorCode = 400,
@@ -103,7 +103,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "steelix";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = new PokemonInfo()
                 {
@@ -129,7 +129,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "steelix";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = null,
                 ErrorCode = 404,
@@ -153,7 +153,7 @@ namespace Pokedex.Tests
             // Arrange
             var name = "";
 
-            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonSpeicesRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            _appProcessor.Setup(x => x.Process(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
             {
                 Data = null,
                 ErrorCode = 400,

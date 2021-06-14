@@ -5,6 +5,6 @@ namespace Pokedex.Application
 {
     public interface IAppProcessor
     {
-        public Task<BaseResponse<PokemonInfo>> Process(GetPokemonSpeicesRequest request);
+        public Task<BaseResponse<PokemonInfo>> Process(GetPokemonInfoRequest request);
     }
 }

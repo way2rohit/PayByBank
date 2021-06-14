@@ -21,7 +21,7 @@ namespace Pokedex.Application
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<BaseResponse<PokemonInfo>> Process(GetPokemonSpeicesRequest request)
+        public async Task<BaseResponse<PokemonInfo>> Process(GetPokemonInfoRequest request)
         {
             BaseResponse<PokemonInfo> response = new BaseResponse<PokemonInfo>();
             try

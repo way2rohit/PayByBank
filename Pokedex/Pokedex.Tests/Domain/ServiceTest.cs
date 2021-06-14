@@ -38,7 +38,7 @@ namespace Pokedex.Tests.Domain
         public async Task GetPokemonSpeices_Returns_OK()
         {
             //Arrange
-            GetPokemonSpeicesRequest request = new GetPokemonSpeicesRequest()
+            GetPokemonInfoRequest request = new GetPokemonInfoRequest()
             {
                 PockemonName = "steelix",
                 IsTranslationRequired = true
@@ -80,7 +80,7 @@ namespace Pokedex.Tests.Domain
         public async Task GetPokemonSpeices_Returns_NotFound()
         {
             //Arrange
-            GetPokemonSpeicesRequest request = new GetPokemonSpeicesRequest()
+            GetPokemonInfoRequest request = new GetPokemonInfoRequest()
             {
                 PockemonName = "notfound",
                 IsTranslationRequired = true
