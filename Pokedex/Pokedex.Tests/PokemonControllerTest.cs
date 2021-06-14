@@ -3,9 +3,6 @@ using Moq;
 using Pokedex.Application;
 using Pokedex.Controllers;
 using Pokedex.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -36,7 +33,7 @@ namespace Pokedex.Tests
                     Description = "This is a test description.",
                     Habitat = "cave",
                     IsLegendary = true,
-                    Name ="steelix"
+                    Name = "steelix"
                 }
             }));
 
@@ -61,7 +58,7 @@ namespace Pokedex.Tests
                 ErrorCode = 404,
                 ErrorMessage = "Not Found"
 
-            })) ;
+            }));
 
             // Act
             var result = await _controller.Get(name);
