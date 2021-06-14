@@ -27,20 +27,21 @@ namespace Pokedex.Tests.Application
             //Assign
             GetPokemonInfoRequest request = new GetPokemonInfoRequest()
             {
-                PockemonName ="steelix"
+                PockemonName = "steelix"
             };
-            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>() { 
+            _service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonInfoRequest>())).Returns(Task.FromResult(new BaseResponse<PokemonInfo>()
+            {
                 Data = new PokemonInfo()
                 {
-                    Description ="This is a test description.",
-                    Habitat ="cave",
+                    Description = "This is a test description.",
+                    Habitat = "cave",
                     IsLegendary = true,
                     Name = "steelix"
-                }            
-            }));          
+                }
+            }));
 
             //Act
-           var result = await _appProcessor.Process(request);
+            var result = await _appProcessor.Process(request);
 
             //Assert
             Assert.True(result.IsSuccess);
@@ -49,7 +50,7 @@ namespace Pokedex.Tests.Application
             Assert.Equal("steelix", result.Data.Name);
             Assert.Equal("cave", result.Data.Habitat);
             Assert.True(result.Data.IsLegendary);
-            Assert.Equal("This is a test description.", result.Data.Description);            
+            Assert.Equal("This is a test description.", result.Data.Description);
             _service.Verify(x => x.GetPokemonInfo(It.IsAny<GetPokemonInfoRequest>()), Times.Once);
             _service.Verify(x => x.GetTranslatedDesc(It.IsAny<GetTranslationRequest>()), Times.Never);
         }

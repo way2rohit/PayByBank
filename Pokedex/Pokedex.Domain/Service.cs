@@ -57,18 +57,21 @@ namespace Pokedex.Domain
             }
             catch (HttpRequestException ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
             }
             catch (ArgumentNullException ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.ParamName} {ex.Message} {ex.InnerException} {ex.Data}";
             }
             catch (Exception ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
@@ -106,25 +109,28 @@ namespace Pokedex.Domain
                     {
                         var errorResponse = JsonConvert.DeserializeObject<ApiErrorResponse>(apiResponse);
                         response.ErrorCode = errorResponse.Error.Code;
-                        response.ErrorMessage = $"Translation API returns {errorResponse.Error.Message} IsLegendary: {request.IsLegendary} Habitat: {request.Habitat}";
+                        response.ErrorMessage = $"Translation API returns {errorResponse.Error.Message} IsLegendary: {request.IsLegendary} Habitat: {request.Habitat} Url:{url}";
                     }
                 }
 
             }
             catch (HttpRequestException ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
             }
             catch (ArgumentNullException ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.ParamName} {ex.Message} {ex.InnerException} {ex.Data}";
             }
             catch (Exception ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
                 response.ErrorCode = 0;//TODO Custum ErrorCode
                 response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";

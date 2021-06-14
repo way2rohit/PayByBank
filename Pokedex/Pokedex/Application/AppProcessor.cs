@@ -32,16 +32,18 @@ namespace Pokedex.Application
                 if (pokemonInfoResponse.IsSuccess)
                 {
                     response.Data = pokemonInfoResponse.Data;
+
+                    //If translation is required then call GetGetTranslatedDesc
                     if (request.IsTranslationRequired)
                     {
-                        GetTranslationRequest _getTranslationRequest = new GetTranslationRequest()
+                        GetTranslationRequest getTranslationRequest = new GetTranslationRequest()
                         {
                             Habitat = pokemonInfoResponse.Data.Habitat,
                             Text = pokemonInfoResponse.Data.Description,
                         };
-                        var translatedDescResponse = await _service.GetTranslatedDesc(_getTranslationRequest);
+                        var translatedDescResponse = await _service.GetTranslatedDesc(getTranslationRequest);
                         if (translatedDescResponse.IsSuccess)
-                        {                                                   
+                        {
                             response.Data.Description = translatedDescResponse.Data;
                         }
                         else
@@ -49,7 +51,7 @@ namespace Pokedex.Application
                             response.ErrorCode = translatedDescResponse.ErrorCode;
                             response.ErrorMessage = translatedDescResponse.ErrorMessage;
                         }
-                    }                   
+                    }
                 }
                 else
                 {
@@ -59,6 +61,7 @@ namespace Pokedex.Application
             }
             catch (Exception ex)
             {
+                //TODO Define custom error code - useful to montior events in datadog
                 _logger.LogError("Error in AppProcessor.Process while processing request.", ex);
                 response.ErrorCode = 9999;
                 response.ErrorMessage = $"{ex.Message} {ex.InnerException}";
