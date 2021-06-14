@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex", "Pokedex\Pokedex.csproj", "{AC3CEE72-4346-435B-94B1-4A9467F557BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokedex", "Pokedex\Pokedex.csproj", "{AC3CEE72-4346-435B-94B1-4A9467F557BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.Domain", "Pokedex.Domain\Pokedex.Domain.csproj", "{AC2427B7-2C75-4FEA-A406-FA799146C812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokedex.Domain", "Pokedex.Domain\Pokedex.Domain.csproj", "{AC2427B7-2C75-4FEA-A406-FA799146C812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.Tests", "Pokedex.Tests\Pokedex.Tests.csproj", "{8EEDA216-A840-46D0-B5A3-85F3997E0287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokedex.Tests", "Pokedex.Tests\Pokedex.Tests.csproj", "{8EEDA216-A840-46D0-B5A3-85F3997E0287}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

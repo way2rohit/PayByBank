@@ -1,15 +1,15 @@
 ﻿namespace Pokedex.Tests
 {
-    public static class MockData
-    {
+	public static class MockData
+	{
 
-        public static string GetErrorResponse()
-        {
-            return @"{ ""Error"":{ ""Code"":404,""Message"":""Not Found""} }";
-        }
-        public static string GetPokemonSpeices()
-        {
-            return @"{
+		public static string GetErrorResponse()
+		{
+			return @"{ ""Error"":{ ""Code"":404,""Message"":""Not Found""} }";
+		}
+		public static string GetPokemonSpeices()
+		{
+			return @"{
                    ""base_happiness"":0,
                    ""capture_rate"":0,
                    ""color"":null,
@@ -53,11 +53,11 @@
                    ""shape"":null,
                    ""varieties"":null
                 }";
-        }
-        public static string GetTranslatedDesc()
-        {
-            return @"{""success"":{""total"":1},""contents"":{""translated"":""A test description,  'this is.'"",""text"":""This is a test description."",""translation"":""yoda""}}";
-        }
+		}
+		public static string GetTranslatedDesc()
+		{
+			return @"{""success"":{""total"":1},""contents"":{""translated"":""A test description,  'this is.'"",""text"":""This is a test description."",""translation"":""yoda""}}";
+		}
 
-    }
+	}
 }
