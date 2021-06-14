@@ -232,18 +232,10 @@ namespace Pokedex.Tests.Domain
             //Assert
             var result = await _service.GetTranslatedDesc(request);
 
-            Assert.False(result.IsSuccess);
-            Assert.True(result.ErrorCode == 404);
-            Assert.False(String.IsNullOrEmpty(result.ErrorMessage));
-            Assert.False(result.Data != null);
-
-            _handlerMock
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                   "SendAsync",
-                   ItExpr.IsAny<HttpRequestMessage>(),
-                   ItExpr.IsAny<CancellationToken>()).Verifiable();
-        }
+            Assert.True(result.IsSuccess);
+            Assert.True(result.ErrorCode != 404);
+            Assert.Equal("This is a test description.", result.Data);
+         }
     }
 
 }

@@ -32,7 +32,7 @@ namespace Pokedex.Domain
             BaseResponse<PokemonInfo> response = new BaseResponse<PokemonInfo>();
             try
             {
-                string url = $"{_appSettings.PokemonSpeciesEndpoint}{request.PockemonName}";
+                string url = $"{_appSettings.PokemonSpeciesEndpoint}{request.PockemonName.ToLower()}";
                 using (var result = await _httpClient.GetAsync(url))
                 {
                     string apiResponse = await result.Content.ReadAsStringAsync();
@@ -49,9 +49,8 @@ namespace Pokedex.Domain
                     }
                     else
                     {
-                        var errorResponse = JsonConvert.DeserializeObject<ApiErrorResponse>(apiResponse);
-                        response.ErrorCode = errorResponse.Error.Code;
-                        response.ErrorMessage = $"PokemonSpecies API returns {errorResponse.Error.Message} PockemonName: {request.PockemonName}";
+                        response.ErrorCode = (int)result.StatusCode;
+                        response.ErrorMessage = $"PokemonSpecies API returns {apiResponse} PockemonName: {request.PockemonName}";
                     }
                 }
             }
@@ -107,33 +106,16 @@ namespace Pokedex.Domain
                     }
                     else
                     {
-                        var errorResponse = JsonConvert.DeserializeObject<ApiErrorResponse>(apiResponse);
-                        response.ErrorCode = errorResponse.Error.Code;
-                        response.ErrorMessage = $"Translation API returns {errorResponse.Error.Message} IsLegendary: {request.IsLegendary} Habitat: {request.Habitat} Url:{url}";
+                        //if you can't translate for whatever reason return standard description
+                        response.Data = request.Text;
                     }
                 }
 
-            }
-            catch (HttpRequestException ex)
+            }           
+            catch
             {
-                //TODO Define custom error code - useful to montior events in datadog
-                _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-                response.ErrorCode = 0;//TODO Custum ErrorCode
-                response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
-            }
-            catch (ArgumentNullException ex)
-            {
-                //TODO Define custom error code - useful to montior events in datadog
-                _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-                response.ErrorCode = 0;//TODO Custum ErrorCode
-                response.ErrorMessage = $"{ex.ParamName} {ex.Message} {ex.InnerException} {ex.Data}";
-            }
-            catch (Exception ex)
-            {
-                //TODO Define custom error code - useful to montior events in datadog
-                _logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-                response.ErrorCode = 0;//TODO Custum ErrorCode
-                response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
+                //if you can't translate for whatever reason return standard description
+                response.Data = request.Text;            
             }
             return response;
         }
