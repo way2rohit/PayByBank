@@ -219,6 +219,76 @@ namespace Pokedex.Tests.Domain
 			//Assert           
 			Assert.Equal("This is a test description.", result);
 		}
+
+		[Fact]
+		public async Task GetTranslatedDesc_Habitat_Null()
+		{
+			//Arrange
+			GetTranslationRequest request = new GetTranslationRequest()
+			{
+				Habitat = null,
+				IsLegendary = true,
+				Text = "This is a test description."
+			};
+
+			var response = new HttpResponseMessage
+			{
+				StatusCode = HttpStatusCode.NotFound,
+				Content = new StringContent(MockData.GetErrorResponse()),
+			};
+
+			_handlerMock
+			   .Protected()
+			   .Setup<Task<HttpResponseMessage>>(
+				  "SendAsync",
+				  ItExpr.IsAny<HttpRequestMessage>(),
+				  ItExpr.IsAny<CancellationToken>())
+			   .ReturnsAsync(response);
+
+			var httpClient = new HttpClient(_handlerMock.Object);
+
+			//Act
+			_service = new Service(_logger.Object, httpClient, _appSettings.Object);
+			var result = await _service.GetTranslatedDesc(request);
+
+			//Assert           
+			Assert.Equal("This is a test description.", result);
+		}
+
+		[Fact]
+		public async Task GetTranslatedDesc_Description_Null()
+		{
+			//Arrange
+			GetTranslationRequest request = new GetTranslationRequest()
+			{
+				Habitat = "mountain",
+				IsLegendary = true,
+				Text = null
+			};
+
+			var response = new HttpResponseMessage
+			{
+				StatusCode = HttpStatusCode.NotFound,
+				Content = new StringContent(MockData.GetErrorResponse()),
+			};
+
+			_handlerMock
+			   .Protected()
+			   .Setup<Task<HttpResponseMessage>>(
+				  "SendAsync",
+				  ItExpr.IsAny<HttpRequestMessage>(),
+				  ItExpr.IsAny<CancellationToken>())
+			   .ReturnsAsync(response);
+
+			var httpClient = new HttpClient(_handlerMock.Object);
+
+			//Act
+			_service = new Service(_logger.Object, httpClient, _appSettings.Object);
+			var result = await _service.GetTranslatedDesc(request);
+
+			//Assert           
+			Assert.True(result == "No description found.");
+		}
 	}
 
 }

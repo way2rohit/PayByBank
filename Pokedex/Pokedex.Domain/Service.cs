@@ -89,6 +89,7 @@ namespace Pokedex.Domain
 		{
 			try
 			{
+				//If Habitat = null then it will throw object ref error and still return the standard description
 				string url = (request.Habitat.Equals("cave", StringComparison.InvariantCultureIgnoreCase)) ||
 								(request.IsLegendary)
 											   ? $"{_appSettings.YodaTranslatorEndpoint}?text={request.Text.RemoveEscapeChars()}"
@@ -114,9 +115,9 @@ namespace Pokedex.Domain
 			catch
 			{
 				//if you can't translate for whatever reason return standard description
-				return request.Text;
+				return (!string.IsNullOrEmpty(request.Text)) ? request.Text : "No description found.";
 			}
 		}
-
+		 
 	}
 }

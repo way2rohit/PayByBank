@@ -1,12 +1,17 @@
 How to run it.
 
-To run locally , (Visual Studio 2019 is required)
+build docker image by running below command from command terminal (Install Docker)
+-----------------------------------------------------------------
+1. docker build -t pokedex-image -f Dockerfile .
+2. docker create --name core-pokedex pokedex-image
+3. docker start core-pokedex 
+4. docker attach --sig-proxy=false core-pokedex 
+
+
+To run locally in windows 10 , (Visual Studio 2019 is required)
+----------------------------------------------------------
 1. Clone the repository in local.
 2. Open the pokedex.sln file and run into IIS Express.
-
-To run using Doker
-1. Clone the repository in local.
-2. Open the pokedex.sln file and run using Doker. (Docker desktop is required)
 
 
 Production
