@@ -92,5 +92,29 @@ namespace Pokedex.Tests.Application
 		}
 
 		//TODO Add Test cases for exceptions
+		
+		
+		
+		[Fact]
+		public async Task Process_ThrowException()
+		{
+			//Assign
+			GetPokemonInfoRequest request = new GetPokemonInfoRequest()
+			{
+				PockemonName = "steelix"
+			};
+			_service.Setup(x => x.GetPokemonInfo(It.IsAny<GetPokemonInfoRequest>())).Throws(new ArgumentNullException("PokemonName"));
+
+			//Act
+			var result = await _appProcessor.Process(request);
+
+			//Assert
+			Assert.False(result.IsSuccess);
+			Assert.True(result.Data == null);
+			Assert.False(String.IsNullOrEmpty(result.ErrorMessage));
+			Assert.Equal("Value cannot be null. (Parameter 'PokemonName')", result.ErrorMessage.Trim());
+			_service.Verify(x => x.GetPokemonInfo(It.IsAny<GetPokemonInfoRequest>()), Times.Once);
+			_service.Verify(x => x.GetTranslatedDesc(It.IsAny<GetTranslationRequest>()), Times.Never);
+		}
 	}
 }

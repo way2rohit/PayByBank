@@ -58,21 +58,21 @@ namespace Pokedex.Domain
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 400;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
 			}
 			catch (ArgumentNullException ex)
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 404;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.ParamName} {ex.Message} {ex.InnerException} {ex.Data}";
 			}
 			catch (Exception ex)
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 9999;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
 			}
 
@@ -89,6 +89,7 @@ namespace Pokedex.Domain
 		{
 			try
 			{
+				//If Habitat = null then it will throw object ref error and still return the standard description
 				string url = (request.Habitat.Equals("cave", StringComparison.InvariantCultureIgnoreCase)) ||
 								(request.IsLegendary)
 											   ? $"{_appSettings.YodaTranslatorEndpoint}?text={request.Text.RemoveEscapeChars()}"
@@ -114,9 +115,9 @@ namespace Pokedex.Domain
 			catch
 			{
 				//if you can't translate for whatever reason return standard description
-				return request.Text;
+				return (!string.IsNullOrEmpty(request.Text)) ? request.Text : "No description found.";
 			}
 		}
-
+		 
 	}
 }
