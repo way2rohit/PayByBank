@@ -3,6 +3,7 @@ using Moq;
 using Pokedex.Application;
 using Pokedex.Controllers;
 using Pokedex.Domain.Models;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -92,7 +93,7 @@ namespace Pokedex.Tests
 			Assert.NotNull(badRequestResult);
 			Assert.Equal(400, badRequestResult.StatusCode);
 
-		}
+		}		
 
 		[Fact]
 		public async Task Get_Pokemon_Translated_OK()
@@ -119,7 +120,6 @@ namespace Pokedex.Tests
 			Assert.NotNull(okResult);
 			Assert.Equal(200, okResult.StatusCode);
 		}
-
 
 		[Fact]
 		public async Task Get_Pokemon_Translated_BadRequest()

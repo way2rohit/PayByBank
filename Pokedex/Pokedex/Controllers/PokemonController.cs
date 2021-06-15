@@ -44,7 +44,12 @@ namespace Pokedex.Controllers
 				}
 				else
 				{
-					if (result.ErrorCode == 404)
+					//Exception Filters Can be used
+					if (result.ErrorCode == 400)
+					{
+						return BadRequest(result.ErrorMessage);
+					}
+					else if (result.ErrorCode == 404)
 					{
 						return NotFound(result.ErrorMessage);
 					}
@@ -81,7 +86,26 @@ namespace Pokedex.Controllers
 					IsTranslationRequired = true
 				};
 				var result = await _appProcessor.Process(request);
-				return Ok(result.Data);
+				if (result.IsSuccess)
+				{
+					return Ok(result.Data);
+				}
+				else
+				{
+					//Exception Filters Can be used
+					if (result.ErrorCode == 400)
+					{
+						return BadRequest(result.ErrorMessage);
+					}
+					else if (result.ErrorCode == 404)
+					{
+						return NotFound(result.ErrorMessage);
+					}
+					else
+					{
+						return Problem(result.ErrorMessage);
+					}
+				}
 			}
 			catch
 			{

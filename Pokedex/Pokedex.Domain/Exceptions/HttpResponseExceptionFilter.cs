@@ -9,7 +9,7 @@ namespace Pokedex.Domain.Exceptions
 
 		public void OnActionExecuting(ActionExecutingContext context)
 		{
-
+			//TODO add code to filter out exceptions on executing
 		}
 
 		public void OnActionExecuted(ActionExecutedContext context)

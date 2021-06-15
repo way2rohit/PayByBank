@@ -58,21 +58,21 @@ namespace Pokedex.Domain
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 400;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
 			}
 			catch (ArgumentNullException ex)
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 404;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.ParamName} {ex.Message} {ex.InnerException} {ex.Data}";
 			}
 			catch (Exception ex)
 			{
 				//TODO Define custom error code - useful to montior events in datadog
 				_logger.LogError("Error in Service.GetPokemonSpeices while processing request.", ex);
-				response.ErrorCode = 0;//TODO Custum ErrorCode
+				response.ErrorCode = 9999;//TODO Custum ErrorCode
 				response.ErrorMessage = $"{ex.Message} {ex.InnerException} {ex.Data}";
 			}
 
